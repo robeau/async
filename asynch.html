@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+
+        function randomPrint(i, callback) {
+            // console.log(i);
+            var interval = ~~(Math.random() * 1000);
+            // console.log(interval);
+            setTimeout(function () {
+                console.log(i, interval);
+                callback(interval);
+            }, interval)
+        }
+
+        function getPromise(i){
+            return new Promise(function(resolve, reject){
+                randomPrint(i, resolve);
+            });
+        }
+
+        var promise = getPromise(10);
+
+        promise.then(function (data) {
+            console.log('printing from within the fulfilled function callback', data);
+        })
+
+
+
+
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

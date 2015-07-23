@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelector('input[type="file"]').addEventListener('change', function () {
+                for(var i = 0; i < this.files.length ; i++){
+                    var file = this.files[i];
+
+                    var reader = new FileReader();
+                    reader.addEventListener('loadend', function () {
+                        var newLi = document.createElement('li');
+                        var newImage = document.createElement('img');
+                        var myUl = document.querySelector('ul');
+                        newImage.src = this.result;
+                        newImage.width=300;
+                        newLi.appendChild(newImage);
+                        myUl.appendChild(newLi);
+                        //document.querySelector('img').src = this.result;
+                    });
+                    reader.readAsDataURL(file);
+                }
+            })
+
+
+        })
+
+    </script>
+</head>
+<body>
+    <h1>Take multiple image files as input</h1>
+    <div>An print them inside a container</div>
+    <div>
+        <input type="file" multiple><br>
+    </div>
+    <ul>List of files:
+    </ul>
+</body>
+</html>
