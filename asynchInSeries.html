@@ -4,6 +4,56 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+<script>
+
+    function randomPrint(i, callback) {
+        // console.log(i);
+        var interval = ~~(Math.random() * 1000);
+        // console.log(interval);
+        setTimeout(function () {
+            console.log(i, interval);
+            callback(interval);
+        }, interval)
+    }
+    function getPromise(i) {
+        // perform async operations
+        // ES6 promises
+        return new Promise(function (resolve, reject) {
+            // async operations
+            randomPrint(i, resolve);
+        });
+    }
+/*
+    getPromise(1).then(function () {
+        console.log('promise1 done');
+        getPromise(2).then(function () {
+            console.log('promise2 done');
+            getPromise(3).then(function () {
+                console.log('promises completed');
+            });
+        });
+    });
+*/
+
+
+    var arr = [1,2,3,4,5];
+    var newArr = [];
+    var i = 1;
+    function runAsyncInSeries(arr){
+        if(arr.length > 0) {
+            getPromise(arr[i]).then(function () {
+                console.log('promise ' + i + ' is done.');
+                arr.pop();
+                i++;
+                runAsyncInSeries(arr).then(function () {
+                });
+            });
+        }
+    }
+
+    runAsyncInSeries(arr);
+
+</script>
 <body>
 
 </body>

@@ -15,7 +15,7 @@
             function getAjaxPromise(term){
                 return new Promise(function (resolve, reject) {
                     var xhr = new XMLHttpRequest();
-                    xhr.open('get', 'https://api.github.com/search/repositories?q=' + term);
+                    xhr.open('get', /*URL*/ + term);
                     xhr.addEventListener('readystatechange', function () {
                         if (xhr.readyState === 4) {
                             //call is complete
